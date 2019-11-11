@@ -5,42 +5,39 @@ import java.util.*;
 public class Main {
 
   public static void main(String[] args) {
-   
-   Scanner in = new Scanner(System.in);
-        System.out.print("Введите количество строк массива: ");
-      int  rows = in.nextInt();
-                
-        System.out.print("Введите количество столбцов массива: ");
-      int  cols = in.nextInt();  
+  
+        Scanner in = new Scanner(System.in);     
+        System.out.print("Введите размер массива: ");
+      int  n = in.nextInt();  
   
   
-    int[][] arr = new int[rows][cols];
+    int[] arr = new int[n];
 
     for (int i = 0; i < arr.length; i++) {
-       for (int j = 0; j < arr[i].length; j++) {
-        System.out.println("Введите элемент arr[" + i + "][" + j + "]:");
+        System.out.println("Введите элемент arr[" + i + "]");
          
-        arr[i][j] = in.nextInt();
+        arr[i] = in.nextInt();
     }
-   }
    
        boolean isSorted = true;
         int buf = 0;
-        
+      
         while (isSorted) {
           isSorted = false;
          
-       for (int i = 0; i < arr.length; i++) {
-         for (int j = 0; j < arr[i].length; j++) {
-             if (arr[i][j] > arr[i][j+1]) {
+     for (int i = 0; i < arr.length-1; i++) {
+             if (arr[i] > arr[i+1]) {
                isSorted = true;
-               buf = arr[i][j];
-               arr[i][j] = arr[i][j+1];
-               arr[i][j+1] = buf;
+               buf = arr[i+1];
+               arr[i+1] = arr[i];
+               arr[i] = buf;
              }
-           }    
+           }      
          }
-       }  
-     System.out.println(Arrays.toString(arr[i][j]));
+         System.out.println("Отсортированный массив: ");
+      for (int i = 0; i < arr.length; i++) {
+        System.out.println(arr[i]);
+      }
+      System.out.println();
   }
 }
